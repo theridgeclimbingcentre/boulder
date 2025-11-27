@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boulder Traverse Tracker Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>Traverse Logbook</h1>
+
+        <details id="instructionPanel" class="info-box">
+            <summary><strong>Read Instructions / Beta</strong></summary>
+            <p id="instructionText">Loading instructions...</p>
+        </details>
+
+        <div class="control-bar">
+            <div class="filter-group">
+                <label>Filter:</label>
+                <select id="gradeFilter" onchange="filterRoutes()"></select>
+            </div>
+            
+            <div class="admin-toggle">
+                <button class="small-btn" onclick="promptForAdminPin()">Enter Admin PIN</button>
+            </div>
+        </div>
+        
+        <hr>
+
+        <div id="configPanel" class="config-card hidden">
+            <h3>Admin Settings</h3>
+            
+            <label><strong>Edit Instructions:</strong></label>
+            <textarea id="editInstructions" rows="2"></textarea>
+            <button class="small-btn" onclick="saveInstructions()">Update Text</button>
+            <hr>
+
+            <label><strong>Manage Colors:</strong></label>
+            <div class="row">
+                <input type="text" id="newColor" placeholder="New Color Name">
+                <button class="small-btn" onclick="addColor()">Add</button>
+            </div>
+            <div id="colorListDisplay" class="tags-container"></div>
+            <hr>
+
+            <label><strong>Manage Sections:</strong></label>
+            <div class="row">
+                <input type="text" id="newSection" placeholder="New Section Name">
+                <button class="small-btn" onclick="addSection()">Add</button>
+            </div>
+            <div id="sectionListDisplay" class="tags-container"></div>
+            <hr>
+
+            <label><strong>Manage Grades:</strong></label>
+            <div class="row">
+                <input type="text" id="newGrade" placeholder="New Grade (e.g., V8)">
+                <button class="small-btn" onclick="addGrade()">Add</button>
+            </div>
+            <div id="gradeListDisplay" class="tags-container"></div>
+        </div>
+
+        <div id="addRoutePanel" class="input-card hidden">
+            <h2 id="formTitle">Add New Route</h2>
+            
+            <input type="hidden" id="editMode" value="add"> 
+            <input type="hidden" id="editingRouteId">
+            
+            <input type="text" id="routeName" placeholder="Route Name">
+            
+            <div class="row">
+                <select id="color1Select"></select>
+                <select id="color2Select"></select>
+            </div>
+
+            <div class="row">
+                <select id="sectionSelect"></select>
+                <select id="gradeSelect"></select>
+            </div>
+
+            <textarea id="routeDesc" placeholder="Description..."></textarea>
+            
+            <button id="saveButton" onclick="handleSaveClick()">Save Route</button>
+        </div>
+
+        <hr>
+
+        <div id="routeList"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
